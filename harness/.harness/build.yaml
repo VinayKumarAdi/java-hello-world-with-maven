@@ -262,8 +262,8 @@ pipeline:
                             infrastructureDefinition:
                                 type: KubernetesDirect
                                 spec:
-                                    connectorRef: gcpconnector
-                                    namespace: target
+                                    connectorRef: finalgcp1
+                                    namespace: default
                                     releaseName: release-<+INFRA_KEY>
                             allowSimultaneousDeployments: false
                         execution:
@@ -364,8 +364,8 @@ pipeline:
                       infrastructureDefinition:
                           type: KubernetesDirect
                           spec:
-                              connectorRef: finalgcp
-                              namespace: deploy
+                              connectorRef: finalgcp1
+                              namespace: default
                               releaseName: release-<+trg>
                       allowSimultaneousDeployments: true
                   execution:
@@ -391,31 +391,6 @@ pipeline:
               when:
                   pipelineStatus: Failure
                   condition: skipBuildStage=no
-        - stage:
-              name: trigger-test
-              identifier: triggertest
-              description: ""
-              type: Approval
-              spec:
-                  execution:
-                      steps:
-                          - step:
-                                name: Approval
-                                identifier: approval
-                                type: HarnessApproval
-                                timeout: 1d
-                                spec:
-                                    approvalMessage: |-
-                                        Please review the following information
-                                        and approve the pipeline progression
-                                    includePipelineExecutionHistory: true
-                                    approvers:
-                                        minimumCount: 1
-                                        disallowPipelineExecutor: false
-                                        userGroups:
-                                            - QAApprovers
-                                    approverInputs: []
-              tags: {}
     properties:
         ci:
             codebase:
