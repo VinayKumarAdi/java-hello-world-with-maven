@@ -192,6 +192,20 @@ pipeline:
                                           skipDryRun: false
                                       timeout: 10m
                                       failureStrategies: []
+                                      when:
+                                          stageStatus: Failure
+                                          condition: skipBuildStage=no
+                                - step:
+                                      type: K8sCanaryDeploy
+                                      name: canary
+                                      identifier: canary
+                                      spec:
+                                          skipDryRun: false
+                                          instanceSelection:
+                                              type: Count
+                                              spec:
+                                                  count: 1
+                                      timeout: 10m
                             rollbackSteps: []
                         serviceDependencies: []
                     tags: {}
@@ -203,8 +217,7 @@ pipeline:
                                   type: Abort
                     variables: []
                     when:
-                        pipelineStatus: Failure
-                        condition: skipStage=no
+                        pipelineStatus: Success
               - stage:
                     name: TEST-deployment
                     identifier: testdeploy
