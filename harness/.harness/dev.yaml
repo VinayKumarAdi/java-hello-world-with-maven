@@ -1,0 +1,19 @@
+connector:
+  name: dev
+  identifier: dev
+  description:
+  orgIdentifier: default
+  projectIdentifier: sample
+  type: Github
+  spec:
+    url: https://github.com/VinayKumarAdi
+    validationRepo: java-hello-world-with-maven
+    authentication:
+      type: Http
+      spec:
+        type: UsernameToken
+        spec:
+          username: VinayKumarAdi
+          tokenRef: pwd
+    executeOnDelegate: false
+    type: Account
