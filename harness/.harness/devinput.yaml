@@ -1,0 +1,14 @@
+inputSet:
+  identifier: "devinput"
+  pipeline:
+    identifier: "api_artifact_push"
+    properties:
+      ci:
+        codebase:
+          build:
+            type: "branch"
+            spec:
+              branch: "dev"
+  name: "dev-input"
+  orgIdentifier: "default"
+  projectIdentifier: "sample"
