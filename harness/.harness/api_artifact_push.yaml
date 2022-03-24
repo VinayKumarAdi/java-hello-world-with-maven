@@ -34,10 +34,11 @@ pipeline:
                                     stageStatus: Success
                                 failureStrategies: []
                   infrastructure:
-                      type: KubernetesDirect
+                      type: VM
                       spec:
-                          connectorRef: newgcp
-                          namespace: harness-delegate-ng
+                          type: Pool
+                          spec:
+                              identifier: ubuntu_pool
               variables:
                   - name: myStageVar
                     type: String
