@@ -34,10 +34,7 @@ pipeline:
                           type: Pool
                           spec:
                               identifier: ubuntu_pool
-              variables:
-                  - name: myStageVar
-                    type: String
-                    value: stageVarValue
+              variables: []
     properties:
         ci:
             codebase:
